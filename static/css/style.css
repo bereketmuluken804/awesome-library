@@ -76,17 +76,31 @@ header {
     grid-template-columns: 1fr 2fr 1fr;
     align-items: end;
     justify-items: center;
-    padding: 5px;
+    
 }
 
 main {
     height: 87vh;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-   
+    grid-template-columns: 1fr 4fr;
+    gap: 10px;
 }
 
-main div {
+main > div {
     background-color: aquamarine;
     border: 2px solid;
+}
+.sidebar {
+    padding: 10px;
+
+}
+
+.stat-card {
+    background-color: white;
+    height: 250px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 20px;
 }
