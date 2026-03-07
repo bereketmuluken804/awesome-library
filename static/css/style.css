@@ -18,10 +18,13 @@
   }
 }
 
-
+html {
+    width: 100%;
+}
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+   width: 100%;
 }
 
 img, picture, video, canvas, svg {
@@ -46,4 +49,21 @@ h1, h2, h3, h4, h5, h6 {
 
 #root, #__next {
   isolation: isolate;
+}
+
+header {
+    background-color: rgb(156, 156, 136);
+    height: 20vh;
+}
+
+main {
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+   
+}
+
+main div {
+    background-color: aquamarine;
+    border: 2px solid;
 }
