@@ -52,8 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-    background-color: rgb(156, 156, 136);
-   
+   background-color: rgb(253, 254, 255);
 }
 .upper-header {
     display: flex;
@@ -82,17 +81,14 @@ header {
 main {
     height: 87vh;
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 10px;
+    grid-template-columns: 1fr 3fr;
+    
 }
 
-main > div {
-    background-color: aquamarine;
-    border: 2px solid;
-}
+
 .sidebar {
     padding: 10px;
-
+    background-color: rgb(236, 236, 236);
 }
 
 .stat-card {
@@ -103,4 +99,39 @@ main > div {
     flex-direction: column;
     justify-content: space-around;
     border-radius: 20px;
+}
+
+.book-container {
+    background-color: rgb(243, 243, 243);
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows:  250px;
+    grid-auto-rows:  250px;
+    gap: 10px;
+    overflow-y: auto;
+}
+.book-card {
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    box-shadow: 5px 5px 5px 5px rgb(228, 226, 226);
+}
+.book-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 80%;
+}
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    flex-wrap: wrap;
 }
