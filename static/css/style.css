@@ -52,7 +52,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-   background-color: rgb(253, 254, 255);
+   background-color: #2596be;
+}
+.logo {
+  color: white;
 }
 .upper-header {
     display: flex;
@@ -71,16 +74,40 @@ header {
     width: 65%;
 }
 .lower-header {
-    height: 50px;
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    align-items: end;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
     justify-items: center;
     padding: 10px;
+    min-width: 300px;
 }
 .add {
     justify-self: start;
     grid-column: 2;
+    color: rgb(255, 255, 255);
+    background-color: rgb(49, 241, 1);
+    width: clamp(100px, 20vh, 200px);
+    border: 1px solid rgb(49, 241, 1) ;
+    border-radius: 10px;
+}
+.add:hover {
+  background-color: white;
+  color:rgb(49, 241, 1) ;
+  border: 1px solid rgb(49, 241, 1) ;
+}
+.theme {
+    justify-self: start;
+    grid-column: 3;
+    width: clamp(100px, 20vh, 200px);
+    border: 1px solid rgb(15, 56, 5);
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(15, 56, 5); 
+}
+.theme:hover {
+    background-color: white;
+    color: rgb(15, 56, 5);
 }
 main {
     height: 87vh;
@@ -92,11 +119,12 @@ main {
 
 .sidebar {
     padding: 10px;
-    background-color: rgb(236, 236, 236);
+    background-color: #3fb7cf;
+    border-right: 1px solid black;
 }
 
 .stat-card {
-    background-color: white;
+    background-color: #c2efff;
     height: 250px;
     padding-left: 10px;
     display: flex;
@@ -107,11 +135,12 @@ main {
 }
 .stat-content {
     width: 80%;
+    min-width: 72px;
     height: 80%;
 }
 
 .book-container {
-    background-color: rgb(243, 243, 243);
+    background-color:#3fb7cf;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -121,14 +150,13 @@ main {
     overflow-y: auto;
 }
 .book-card {
-    background-color: white;
+    background-color: #f1fbff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 90%;
-    box-shadow: 5px 5px 5px 5px rgb(228, 226, 226);
 }
 .book-content {
     display: flex;
@@ -142,5 +170,27 @@ main {
     flex-direction: column;
     align-items: stretch;
     gap: 5px;
-    flex-wrap: wrap;
+
+}
+
+.controls button {
+  border: 1px solid white;
+  width: clamp(100px, 20vh, 200px);
+  border-radius: 5px;
+}
+#remove-book {
+background-color: red;
+    color: white; 
+}
+#remove-book:hover {
+  background-color: aliceblue;
+  color: rgb(255, 16, 16);
+  border: 1px solid red;
+}
+
+#edit, #read-mark {
+  background-color: rgb(165, 255, 249);
+}
+#edit:hover, #read-mark:hover{
+  background-color: rgb(112, 176, 172);
 }
