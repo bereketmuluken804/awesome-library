@@ -57,6 +57,9 @@ header {
 .logo {
   color: white;
 }
+button:hover {
+  cursor: pointer;
+}
 .upper-header {
     display: flex;
     flex-wrap: wrap;
