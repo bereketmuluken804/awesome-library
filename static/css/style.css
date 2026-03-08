@@ -181,19 +181,19 @@ main {
   width: clamp(100px, 20vh, 200px);
   border-radius: 5px;
 }
-#remove-book {
+.remove-book {
 background-color: red;
     color: white; 
 }
-#remove-book:hover {
+.remove-book:hover {
   background-color: aliceblue;
   color: rgb(255, 16, 16);
   border: 1px solid red;
 }
 
-#edit, #read-mark {
+.edit, .read-mark {
   background-color: rgb(165, 255, 249);
 }
-#edit:hover, #read-mark:hover{
+.edit:hover, .read-mark:hover{
   background-color: rgb(112, 176, 172);
 }
