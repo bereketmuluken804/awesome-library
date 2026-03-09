@@ -10,9 +10,9 @@ function Book(title, author, pages, bookStat){
     this.pages = pages
     this.bookStat = bookStat;
 }
-book1 = new Book("1984", "George Orwell", 328, "Read");
-book2 = new Book("The Catcher in the Rye", "J.D. Salinger", 234 , "Unread")
-book3 = new Book("The Hobbit", "J.R.R. Tolkien", 310, "Read")
+const book1 = new Book("1984", "George Orwell", 328, "Read");
+const book2 = new Book("The Catcher in the Rye", "J.D. Salinger", 234 , "Unread")
+const book3 = new Book("The Hobbit", "J.R.R. Tolkien", 310, "Read")
 myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);

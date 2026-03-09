@@ -350,3 +350,16 @@ footer {
   align-items: center;
   gap: 20px;
 }
+
+@media(max-width: 350px){
+  *{
+    font-size: 0.8rem;
+  }
+  .book-container{
+    grid-template-rows:  200px;
+    grid-auto-rows: 200px;
+  }
+  .stat-card{
+    height: 120px;
+  }
+}
