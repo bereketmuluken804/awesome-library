@@ -133,11 +133,13 @@ main {
     background-color: #c2efff;
     height: 250px;
     padding-left: 10px;
+    padding-right: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     border-radius: 20px;
+    font-size: large;
 }
 .stat-content {
     width: 80%;
