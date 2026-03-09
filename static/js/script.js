@@ -197,4 +197,5 @@ confirmDialog.addEventListener('click', (e)=>{
     }
     confirmDialog.close()
 })
+
 displayBooks();
