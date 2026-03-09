@@ -141,7 +141,11 @@ form.addEventListener('submit', (e)=>{
     dialog.close();
     ;
 })
-
+dialog.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter"){
+        form.requestSubmit();
+    }
+})
 editForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     data = new FormData(editForm);
