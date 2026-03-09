@@ -84,6 +84,7 @@ button:hover {
     justify-items: center;
     padding: 10px;
     min-width: 300px;
+    font-size: large
 }
 .add {
     justify-self: start;
@@ -124,6 +125,7 @@ main {
     padding: 10px;
     background-color: #3fb7cf;
     border-right: 1px solid black;
+   
 }
 
 .stat-card {
@@ -147,10 +149,10 @@ main {
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows:  250px;
-    grid-auto-rows:  250px;
-    gap: 10px;
+    grid-template-rows:  350px;
+    grid-auto-rows: 350px;
     overflow-y: auto;
+    gap: 10px;
 }
 .book-card {
     background-color: #f1fbff;
@@ -160,6 +162,7 @@ main {
     justify-content: space-around;
     align-items: center;
     width: 90%;
+    
 }
 .book-content {
     display: flex;
@@ -183,7 +186,7 @@ main {
 }
 .remove-book {
 background-color: red;
-    color: white; 
+color: white; 
 }
 .remove-book:hover {
   background-color: aliceblue;
@@ -196,4 +199,32 @@ background-color: red;
 }
 .edit:hover, .read-mark:hover{
   background-color: rgb(112, 176, 172);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 10px;
+  background-color: rgb(198, 246, 255);
+  padding: 20px;
+  font-size: larger;
+  border-radius: 30px;
+}
+
+.form-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+.cancel-btn {    
+    color: rgb(255, 255, 255);
+    background-color: red;
+    width: clamp(100px, 20vh, 200px);
+    border: 1px solid red ;
+    border-radius: 10px;
+}
+.cancel-btn:hover {
+  background-color: white;
+  color:red ;
+  border: 1px solid red ;
 }
