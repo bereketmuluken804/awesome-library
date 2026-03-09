@@ -10,8 +10,13 @@ function Book(title, author, pages, bookStat){
     this.pages = pages
     this.bookStat = bookStat;
 }
-book = new Book("My Book", "me", 120, "Read");
-myLibrary.push(book);
+book1 = new Book("1984", "George Orwell", 328, "Read");
+book2 = new Book("The Catcher in the Rye", "J.D. Salinger", 234 , "Unread")
+book3 = new Book("The Hobbit", "J.R.R. Tolkien", 310, "Read")
+myLibrary.push(book1);
+myLibrary.push(book2);
+myLibrary.push(book3);
+
 
 function addBookToLibrary(title, author, pages, bookStat){
     newBook = new Book(title,  author, pages, bookStat);
@@ -46,6 +51,15 @@ const unreadBooks = document.querySelector(".unread");
 function displayBooks(){
     bookContainer.replaceChildren()
     read_no=0;
+    if(myLibrary.length === 0){
+        message = document.createElement("h4");
+        message.textContent = "Your library is empty, add some books.";
+        bookContainer.appendChild(message);
+        bookNo.textContent = `Total: ${myLibrary.length}`;
+        readBooks.textContent = `Read: ${read_no}`;
+        unreadBooks.textContent = `Unread: ${myLibrary.length - read_no}`;
+
+    }
     for (let book of myLibrary){
         const bookCard = document.createElement("div");
         bookCard.classList.add("book-card")
@@ -185,8 +199,6 @@ bookCont.addEventListener('click', (e)=>{
         bookId = e.target.parentNode.parentNode.getAttribute("book-id")
         confirmDialog.showModal()
     }
-    
-    
 })
 
 const confirmDialog = document.querySelector("#confirm");
