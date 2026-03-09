@@ -16,46 +16,44 @@ myLibrary.push(book);
 function addBookToLibrary(title, author, pages, bookStat){
     newBook = new Book(title,  author, pages, bookStat);
     myLibrary.push(newBook);
-    const bookCard = document.createElement("div");
-    bookCard.classList.add("book-card")
-    bookCard.innerHTML = `
-                    <div class="book-content">
-                        <h2 class="book-title">${newBook.title}</h2>
-                        <h3 class="book-author">By: ${newBook.author}</h3>
-                        <p calss="book-page">Pages: ${newBook.pages}</p>
-                        <p class="book-stat">${newBook.bookStat}</p>
-                    </div>
-                    <div class="controls">
-                        <button class="read-mark">Mark Unread</button>
-                        <button class="edit">Edit</button>
-                        <button class="remove-book" id=${newBook.id}>Remove</button>
-                    </div>
-    `
-    bookContainer.appendChild(bookCard);
-    return;
+    displayBooks();
 }
 
 const bookContainer = document.querySelector(".book-container");
 
 // displaying books inside library
-for (book of myLibrary){
-    const bookCard = document.createElement("div");
-    bookCard.classList.add("book-card")
-    bookCard.innerHTML = `
-                    <div class="book-content">
-                        <h2 class="book-title">${book.title}</h2>
-                        <h3 class="book-author">By: ${book.author}</h3>
-                        <p calss="book-page">Pages: ${book.pages}</p>
-                        <p class="book-stat" id=${book.id}>${book.bookStat}</p>
-                    </div>
-                    <div class="controls">
-                        <button class="read-mark">Mark Unread</button>
-                        <button class="edit">Edit</button>
-                        <button class="remove-book">Remove</button>
-                    </div>
-    `
-    bookContainer.appendChild(bookCard);
+function displayBooks(){
+    bookContainer.replaceChildren()
+    for (let book of myLibrary){
+        const bookCard = document.createElement("div");
+        bookCard.classList.add("book-card")
+        stat = book.bookStat === "Read" ? "Unread" : "Read"
+        bookCard.innerHTML = `
+                        <div class="book-content">
+                            <h2 class="book-title">${book.title}</h2>
+                            <h3 class="book-author">By: ${book.author}</h3>
+                            <p class="book-page">Pages: ${book.pages}</p>
+                            <p class="book-stat" id=${book.id}>${book.bookStat}</p>
+                        </div>
+                        <div class="controls">
+                            <button class="read-mark">Mark ${stat}</button>
+                            <button class="edit">Edit</button>
+                            <button class="remove-book">Remove</button>
+                        </div>
+        `
+        bookContainer.appendChild(bookCard);
+
+        const markbtn = bookCard.querySelector(".read-mark");
+        markbtn.addEventListener('click', (e) => {
+            book.bookStat = book.bookStat === "Read" ? "Unread" :"Read";
+            e.target.parentNode.previousElementSibling.lastElementChild.textContent = book.bookStat;
+            e.target.textContent = `Mark ${book.bookStat === "Read" ? "Unread" :"Read"}`;
+        })
+
+        
 }
+}
+
 
 const addBook = document.querySelector(".add");
 const dialog = document.querySelector("dialog");
@@ -94,6 +92,29 @@ form.addEventListener('submit', (e)=>{
     if (bookStat !== "Read"){
         bookStat = "Unread";
     }
+
     addBookToLibrary(title, author, pages, bookStat);
     dialog.close()
 })
+
+const authorinput = document.querySelector("#author");
+const titleinput = document.querySelector("#title");
+
+authorinput.addEventListener("input", (e)=>{
+    const title = titleinput.value;
+    const author = authorinput.value;
+
+    let duplicate = false;
+    for(let book of myLibrary){
+        if(book.title === title && book.author===author){
+            duplicate = true;
+        }
+    }  
+    if(duplicate){
+        authorinput.setCustomValidity("A book by same Title and Author Exists.")
+    }else {
+        authorinput.setCustomValidity("");
+    }
+})
+
+displayBooks();
