@@ -38,10 +38,14 @@ function removeBook(id){
     }
 }
 const bookContainer = document.querySelector(".book-container");
-
+const statbox = document.querySelector(".stat-content");
+const bookNo = document.querySelector(".book-nos");
+const readBooks = document.querySelector(".read");
+const unreadBooks = document.querySelector(".unread");
 // displaying books inside library
 function displayBooks(){
     bookContainer.replaceChildren()
+    read_no=0;
     for (let book of myLibrary){
         const bookCard = document.createElement("div");
         bookCard.classList.add("book-card")
@@ -60,6 +64,9 @@ function displayBooks(){
                             <button class="remove-book">Remove</button>
                         </div>
         `
+        if(book.bookStat === "Read"){
+            read_no += 1;
+        }
         bookContainer.appendChild(bookCard);
 
         const markbtn = bookCard.querySelector(".read-mark");
@@ -67,6 +74,7 @@ function displayBooks(){
             book.bookStat = book.bookStat === "Read" ? "Unread" :"Read";
             e.target.parentNode.previousElementSibling.lastElementChild.textContent = book.bookStat;
             e.target.textContent = `Mark ${book.bookStat === "Read" ? "Unread" :"Read"}`;
+            displayBooks()
         })
 
         const edit = bookCard.querySelector(".edit")
@@ -74,7 +82,9 @@ function displayBooks(){
             editDialog.showModal();
             bookId = e.target.parentNode.parentNode.getAttribute("book-id")
         })
-
+        bookNo.textContent = `Total: ${myLibrary.length}`;
+        readBooks.textContent = `Read: ${read_no}`;
+        unreadBooks.textContent = `Unread: ${myLibrary.length - read_no}`;
 }
 }
 
@@ -164,8 +174,9 @@ const bookCont = document.querySelector(".book-container");
 bookCont.addEventListener('click', (e)=>{
     if(e.target.textContent === "Remove"){
         bookId = e.target.parentNode.parentNode.getAttribute("book-id")
+        confirmDialog.showModal()
     }
-    confirmDialog.showModal()
+    
     
 })
 
