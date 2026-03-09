@@ -29,6 +29,14 @@ function editBook(id, title, author, pages) {
     }
 }
 
+function removeBook(id){
+    for (let book of myLibrary){
+        const i = myLibrary.findIndex(book => book.id === id);
+        if(i > -1){
+            myLibrary.splice(i, 1);
+        }
+    }
+}
 const bookContainer = document.querySelector(".book-container");
 
 // displaying books inside library
@@ -66,6 +74,7 @@ function displayBooks(){
             editDialog.showModal();
             bookId = e.target.parentNode.parentNode.getAttribute("book-id")
         })
+
 }
 }
 
@@ -151,4 +160,21 @@ authorinput.addEventListener("input", (e)=>{
     }
 })
 
+const bookCont = document.querySelector(".book-container");
+bookCont.addEventListener('click', (e)=>{
+    if(e.target.textContent === "Remove"){
+        bookId = e.target.parentNode.parentNode.getAttribute("book-id")
+    }
+    confirmDialog.showModal()
+    
+})
+
+const confirmDialog = document.querySelector("#confirm");
+confirmDialog.addEventListener('click', (e)=>{
+    if(e.target.textContent === "Yes"){
+       removeBook(bookId);
+       displayBooks();
+    }
+    confirmDialog.close()
+})
 displayBooks();
