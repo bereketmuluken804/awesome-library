@@ -117,9 +117,11 @@ dialog.addEventListener('click', (e)=>{
 })
 
 cancel.addEventListener('click', (e)=>{
-    dialog.close()
+    form.reset();
+    dialog.close();
 })
 cancleEdit.addEventListener('click', (e)=>{
+    editForm.reset();
     editDialog.close();
 })
 
@@ -135,7 +137,9 @@ form.addEventListener('submit', (e)=>{
     }
 
     addBookToLibrary(title, author, pages, bookStat);
-    dialog.close()
+    form.reset()
+    dialog.close();
+    ;
 })
 
 editForm.addEventListener('submit', (e)=>{
@@ -146,7 +150,8 @@ editForm.addEventListener('submit', (e)=>{
     pages = data.get("pages");
     
     editBook(bookId, title, author, pages);
-    editDialog.close()
+    editForm;
+    editDialog.close();
     displayBooks();
 
 })
