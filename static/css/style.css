@@ -94,6 +94,7 @@ button:hover {
     width: clamp(100px, 20vh, 200px);
     border: 1px solid rgb(49, 241, 1) ;
     border-radius: 10px;
+    outline: none;
 }
 .add:hover {
   background-color: white;
@@ -200,22 +201,43 @@ color: white;
 .edit:hover, .read-mark:hover{
   background-color: rgb(112, 176, 172);
 }
-
+dialog {
+    background-color: rgb(198, 246, 255);
+    border-radius: 30px;
+    border: none;
+}
 form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   gap: 10px;
-  background-color: rgb(198, 246, 255);
   padding: 20px;
   font-size: larger;
-  border-radius: 30px;
 }
-
+dialog::backdrop {
+  background-color: rgba(rgb(211, 67, 67), rgb(34, 42, 34), rgb(96, 96, 141), .8);
+}
 .form-btns {
   display: flex;
   justify-content: space-evenly;
+  gap: 5px;
 }
+.form-add {
+  justify-self: start;
+    grid-column: 2;
+    color: rgb(255, 255, 255);
+    background-color: rgb(49, 241, 1);
+    width: clamp(100px, 20vh, 200px);
+    border: 1px solid rgb(49, 241, 1) ;
+    border-radius: 10px;
+    outline: none;
+}
+.form-add:hover {
+  background-color: white;
+  color:rgb(49, 241, 1) ;
+  border: 1px solid rgb(49, 241, 1) ;
+}
+
 .cancel-btn {    
     color: rgb(255, 255, 255);
     background-color: red;
@@ -227,4 +249,26 @@ form {
   background-color: white;
   color:red ;
   border: 1px solid red ;
+}
+
+input {
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+input:focus {
+  box-shadow: 2px 2px 20px 2px rgb(244, 255, 233);
+}
+
+input[type="checkbox"]{
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}
+
+label[for="stat"]{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }

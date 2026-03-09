@@ -13,11 +13,8 @@ function Book(title, author, pages, bookStat){
 book = new Book("My Book", "me", 120, "Read");
 myLibrary.push(book);
 
-function addBookToLibrary(){
-    // addForm = document.querySelector("form");
-    // addForm.style["z-index"]= 2;
-
-    newBook = new Book(title, author, bookStat);
+function addBookToLibrary(title, author, pages, bookStat){
+    newBook = new Book(title,  author, pages, bookStat);
     myLibrary.push(newBook);
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card")
@@ -37,12 +34,6 @@ function addBookToLibrary(){
     bookContainer.appendChild(bookCard);
     return;
 }
-
-addBook = document.querySelector(".add");
-addBook.addEventListener("click", () =>{
-    dialog.showModal();
-    addBookToLibrary();
-});
 
 const bookContainer = document.querySelector(".book-container");
 
@@ -66,15 +57,43 @@ for (book of myLibrary){
     bookContainer.appendChild(bookCard);
 }
 
+const addBook = document.querySelector(".add");
 const dialog = document.querySelector("dialog");
 const cancel = document.querySelector(".cancel-btn");
+const form = document.querySelector("#form");
+
+
+addBook.addEventListener("click", () =>{
+    dialog.showModal();
+});
+
+
+dialog.addEventListener('click', (e)=>{
+    const dialogDimensions = dialog.getBoundingClientRect();
+    if(
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+    ){
+        dialog.close()
+    }
+})
 
 cancel.addEventListener('click', (e)=>{
     dialog.close()
 })
-add
-const removeBtn = document.querySelector(".remove-book");
-removeBtn.addEventListener("click", (e)=>{
-    id = e.targed.id;
-    
-}); 
+
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();  // prevent the page from reloading and lose the data
+    data = new FormData(form); 
+    title = data.get("title");
+    author = data.get("author");
+    pages = data.get("pages")
+    bookStat = data.get("stat");
+    if (bookStat !== "Read"){
+        bookStat = "Unread";
+    }
+    addBookToLibrary(title, author, pages, bookStat);
+    dialog.close()
+})

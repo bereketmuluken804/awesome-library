@@ -39,74 +39,22 @@
             </div>
         </div>
         <div class="book-container">
-            <div class="book-card">
-                 <div class="book-content">
-                        <h2 class="book-title">${newBook.title}</h2>
-                        <h3 class="book-author">By: ${newBook.author}</h3>
-                        <p calss="book-page">Pages: ${newBook.pages}</p>
-                        <p class="book-stat">${newBook.bookStat}</p>
-                    </div>
-                    <div class="controls">
-                        <button class="read-mark">Mark Unread</button>
-                        <button class="edit">Edit</button>
-                        <button class="remove-book">Remove</button>
-                    </div>
-            </div>
-                       <div class="book-card">
-                 <div class="book-content">
-                        <h2 class="book-title">${newBook.title}</h2>
-                        <h3 class="book-author">By: ${newBook.author}</h3>
-                        <p calss="book-page">Pages: ${newBook.pages}</p>
-                        <p class="book-stat">${newBook.bookStat}</p>
-                    </div>
-                    <div class="controls">
-                        <button class="read-mark">Mark Unread</button>
-                        <button class="edit">Edit</button>
-                        <button class="remove-book">Remove</button>
-                    </div>
-            </div>
-                       <div class="book-card">
-                 <div class="book-content">
-                        <h2 class="book-title">${newBook.title}</h2>
-                        <h3 class="book-author">By: ${newBook.author}</h3>
-                        <p calss="book-page">Pages: ${newBook.pages}</p>
-                        <p class="book-stat">${newBook.bookStat}</p>
-                    </div>
-                    <div class="controls">
-                        <button class="read-mark">Mark Unread</button>
-                        <button class="edit">Edit</button>
-                        <button class="remove-book">Remove</button>
-                    </div>
-            </div>
-                       <div class="book-card">
-                 <div class="book-content">
-                        <h2 class="book-title">${newBook.title}</h2>
-                        <h3 class="book-author">By: ${newBook.author}</h3>
-                        <p calss="book-page">Pages: ${newBook.pages}</p>
-                        <p class="book-stat">${newBook.bookStat}</p>
-                    </div>
-                    <div class="controls">
-                        <button class="read-mark">Mark Unread</button>
-                        <button class="edit">Edit</button>
-                        <button class="remove-book">Remove</button>
-                    </div>
-            </div>
         </div>
     </main>
     <dialog>
-        <form action="#">
+        <form action="#" id="form">
             <label for="title">Title</label>
-            <input type="text" id="title">
+            <input type="text" id="title" name="title" autocomplete="off" required>
         
             <label for="author">Author</label>
-            <input type="text" id="author">
-            <label for="pages">Pages</label>
-            <input type="text" id="pages">
+            <input type="text" id="author" name="author" autocomplete="off" required>
+            <label for="pages" >Pages</label>
+            <input type="number" id="pages" name="pages" autocomplete="off" min="1" max="10000" required>
         
-            <label for="stat">Have you Read the Book</label>
-            <input type="text" id="stat">
+            <label for="stat"><input type="checkbox" id="stat" name="stat" value="Read"> Mark Read</label>
+            
             <div class="form-btns">
-                <button type="submit" class="add">Add Book</button>
+                <button type="submit" class="form-add">Add Book</button>
                 <button type="button" class="cancel-btn">Cancel</button>
             </div>
         </form>
