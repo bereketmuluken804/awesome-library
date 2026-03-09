@@ -1,5 +1,5 @@
 let myLibrary = [];
-
+let bookId;
 function Book(title, author, pages, bookStat){
     if(!new.target){
         throw error("Use 'new' to create an object!")
@@ -19,6 +19,16 @@ function addBookToLibrary(title, author, pages, bookStat){
     displayBooks();
 }
 
+function editBook(id, title, author, pages) {
+    for (let book of myLibrary){
+        if(id === book.id){
+            book.title = title;
+            book.author = author;
+            book.pages = pages;
+        }
+    }
+}
+
 const bookContainer = document.querySelector(".book-container");
 
 // displaying books inside library
@@ -27,13 +37,14 @@ function displayBooks(){
     for (let book of myLibrary){
         const bookCard = document.createElement("div");
         bookCard.classList.add("book-card")
+        bookCard.setAttribute("book-id", book.id);
         stat = book.bookStat === "Read" ? "Unread" : "Read"
         bookCard.innerHTML = `
                         <div class="book-content">
                             <h2 class="book-title">${book.title}</h2>
                             <h3 class="book-author">By: ${book.author}</h3>
                             <p class="book-page">Pages: ${book.pages}</p>
-                            <p class="book-stat" id=${book.id}>${book.bookStat}</p>
+                            <p class="book-stat" >${book.bookStat}</p>
                         </div>
                         <div class="controls">
                             <button class="read-mark">Mark ${stat}</button>
@@ -50,15 +61,23 @@ function displayBooks(){
             e.target.textContent = `Mark ${book.bookStat === "Read" ? "Unread" :"Read"}`;
         })
 
-        
+        const edit = bookCard.querySelector(".edit")
+        edit.addEventListener('click', (e)=>{
+            editDialog.showModal();
+            bookId = e.target.parentNode.parentNode.getAttribute("book-id")
+        })
 }
 }
 
 
 const addBook = document.querySelector(".add");
-const dialog = document.querySelector("dialog");
+const dialog = document.querySelector("#add-dialog");
 const cancel = document.querySelector(".cancel-btn");
-const form = document.querySelector("#form");
+const cancleEdit = document.querySelector(".cancel-edit");
+const form = document.querySelector("#form-1");
+const editForm = document.querySelector("#form-2");
+const editDialog = document.querySelector("#edit-dialog");
+
 
 
 addBook.addEventListener("click", () =>{
@@ -81,13 +100,16 @@ dialog.addEventListener('click', (e)=>{
 cancel.addEventListener('click', (e)=>{
     dialog.close()
 })
+cancleEdit.addEventListener('click', (e)=>{
+    editDialog.close();
+})
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault();  // prevent the page from reloading and lose the data
     data = new FormData(form); 
     title = data.get("title");
     author = data.get("author");
-    pages = data.get("pages")
+    pages = data.get("pages");
     bookStat = data.get("stat");
     if (bookStat !== "Read"){
         bookStat = "Unread";
@@ -97,6 +119,18 @@ form.addEventListener('submit', (e)=>{
     dialog.close()
 })
 
+editForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    data = new FormData(editForm);
+    title = data.get("title");
+    author = data.get("author");
+    pages = data.get("pages");
+    
+    editBook(bookId, title, author, pages);
+    editDialog.close()
+    displayBooks();
+
+})
 const authorinput = document.querySelector("#author");
 const titleinput = document.querySelector("#title");
 
