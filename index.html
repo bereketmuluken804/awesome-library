@@ -44,14 +44,15 @@
     <dialog id="add-dialog">
         <form action="#" id="form-1">
             <h3>Add A New Book</h3>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" autocomplete="off" required>
-        
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author" autocomplete="off" required>
-            <label for="pages" >Pages</label>
-            <input type="number" id="pages" name="pages" autocomplete="off" min="1" max="10000" required>
-        
+            <input type="text" id="title" name="title" autocomplete="off" placeholder="Title" >
+            <div class="error" id="titleError"></div>
+            
+            <input type="text" id="author" name="author"  placeholder="Author" autocomplete="off" >
+            <div class="error" id="authorError"></div>
+
+            <input type="number" id="pages" name="pages" placeholder="Pages" autocomplete="off" >
+            <div class="error" id="pagesError"></div>
+
             <label for="stat"><input type="checkbox" id="stat" name="stat" value="Read"> Mark Read</label>
             
             <div class="form-btns">
