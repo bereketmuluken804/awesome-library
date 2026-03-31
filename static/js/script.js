@@ -176,7 +176,7 @@ form.addEventListener("submit", (e) => {
   if (!author) {
     authorE.textContent = "This field is required.";
     valid = false;
-  } else if (!Number.isNaN(Number(author))) {
+  } else if (/^\d+$/.test(author)) {
     authorE.textContent = "Name can't be number";
     valid = false;
   } else if (author.length < 2) {
@@ -186,6 +186,9 @@ form.addEventListener("submit", (e) => {
 
   if (!rawpages) {
     pagesE.textContent = "This field is required.";
+    valid = false;
+  } else if (Number.isNaN(pages)) {
+    pagesE.textContent = "Pages must be a number.";
     valid = false;
   } else if (pages > 10000) {
     pagesE.textContent = "Max page is 10,000";
@@ -197,8 +200,8 @@ form.addEventListener("submit", (e) => {
 
   const duplicate = myLibrary.some(
     (book) =>
-      book.title.trim().toLowerCase() === title.trim().toLowerCase() &&
-      book.author.trim().toLowerCase() === author.trim().toLowerCase(),
+      book.title.toLowerCase() === title.toLowerCase() &&
+      book.author.toLowerCase() === author.toLowerCase(),
   );
   if (valid && duplicate) {
     titleE.textContent = "Book already exists.";
