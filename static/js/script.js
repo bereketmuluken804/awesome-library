@@ -155,27 +155,20 @@ const pagesE = document.getElementById("pagesError");
 form.addEventListener("submit", (e) => {
   e.preventDefault(); // prevent the page from reloading and lose the data
 
-  let data = new FormData(form);
-  let title = data.get("title");
-  let author = data.get("author");
-  let pages = Number(data.get("pages"));
-  let bookStat = data.get("stat");
+  const data = new FormData(form);
+
+  const title = String(data.get("title") ?? "").trim();
+  const author = String(data.get("author") ?? "").trim();
+  const rawpages = data.get("pages");
+  const pages = Number(rawpages);
+  const bookStat = data.get("stat") === "Read" ? "Read" : "Unread";
 
   let valid = true;
+
   document.querySelectorAll(".error").forEach((el) => {
     el.textContent = "";
   });
 
-  let copy = myLibrary.some(
-    (book) =>
-      book.title.trim().toLowerCase() === title.trim().toLowerCase() &&
-      book.author.trim().toLowerCase() === author.trim().toLowerCase(),
-  );
-
-  if (copy) {
-    titleE.textContent = "Book already exists.";
-    valid = false;
-  }
   if (!title) {
     titleE.textContent = "This field is required.";
     valid = false;
@@ -191,7 +184,7 @@ form.addEventListener("submit", (e) => {
     valid = false;
   }
 
-  if (pages !== 0 && !pages) {
+  if (!rawpages) {
     pagesE.textContent = "This field is required.";
     valid = false;
   } else if (pages > 10000) {
@@ -199,16 +192,20 @@ form.addEventListener("submit", (e) => {
     valid = false;
   } else if (pages < 1) {
     pagesE.textContent = "Min page is 1";
+    valid = false;
   }
 
-  if (bookStat !== "Read") {
-    bookStat = "Unread";
+  const duplicate = myLibrary.some(
+    (book) =>
+      book.title.trim().toLowerCase() === title.trim().toLowerCase() &&
+      book.author.trim().toLowerCase() === author.trim().toLowerCase(),
+  );
+  if (valid && duplicate) {
+    titleE.textContent = "Book already exists.";
+    valid = false;
   }
-
   if (valid) {
-    title = toTitleCase(title);
-    author = toTitleCase(author);
-    addBookToLibrary(title, author, pages, bookStat);
+    addBookToLibrary(toTitleCase(title), toTitleCase(author), pages, bookStat);
     form.reset();
     dialog.close();
   }
@@ -230,25 +227,6 @@ editForm.addEventListener("submit", (e) => {
   editDialog.close();
   displayBooks();
 });
-const authorinput = document.querySelector("#author");
-const titleinput = document.querySelector("#title");
-
-// authorinput.addEventListener("input", (e)=>{
-//     const title = titleinput.value;
-//     const author = authorinput.value;
-
-//     let duplicate = false;
-//     for(let book of myLibrary){
-//         if(book.title === title && book.author===author){
-//             duplicate = true;
-//         }
-//     }
-//     if(duplicate){
-//         authorinput.setCustomValidity("A book by same Title and Author Exists.")
-//     }else {
-//         authorinput.setCustomValidity("");
-//     }
-// })
 
 const bookCont = document.querySelector(".book-container");
 bookCont.addEventListener("click", (e) => {
