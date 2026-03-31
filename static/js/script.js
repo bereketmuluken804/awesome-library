@@ -120,8 +120,6 @@ const form = document.querySelector("#form-1");
 const editForm = document.querySelector("#form-2");
 const editDialog = document.querySelector("#edit-dialog");
 
-dialog.showModal();
-
 addBook.addEventListener("click", () => {
   document.querySelectorAll(".error").forEach((el) => {
     el.textContent = "";
